@@ -9,6 +9,14 @@ export class UsuarioService {
     return await Usuario.create(dto);
   }
 
+  static async restablecer(registro, correo, nuevaPass){
+    const user = await Usuario.findOne({ where:{ registro, correo } });
+    if(!user) throw new Error('Datos no coinciden');
+    user.password = bcrypt.hashSync(nuevaPass,10);
+    await user.save();
+    return { message:'Contraseña actualizada' };
+  }
+
   static async autenticar(correo, password) {
     const user = await Usuario.findOne({ where: { correo } });
     if (!user || !bcrypt.compareSync(password, user.password)) throw new Error('Credenciales inválidas');

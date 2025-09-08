@@ -1,7 +1,7 @@
-import { DataTypes } from 'sequelize';
-import { sequelize } from '../config/database.js';
-import { Usuario } from './usuario.js';
-import { Curso } from './curso.js';
+import {DataTypes} from 'sequelize';
+import {sequelize} from '../config/database.js';
+import {Usuario} from './usuario.js';
+import {Curso} from './curso.js';
 
 export const Asignacion = sequelize.define('Asignacion', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },

@@ -1,5 +1,5 @@
-import { DataTypes } from 'sequelize';
-import { sequelize } from '../config/database.js';
+import {DataTypes} from 'sequelize';
+import {sequelize} from '../config/database.js';
 
 export const Rol = sequelize.define('Rol', {
     id: { type: DataTypes.BIGINT, primaryKey: true, autoIncrement: true },

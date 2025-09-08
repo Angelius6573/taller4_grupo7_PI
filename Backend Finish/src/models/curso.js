@@ -1,5 +1,5 @@
-import { DataTypes } from 'sequelize';
-import { sequelize } from '../config/database.js';
+import {DataTypes} from 'sequelize';
+import {sequelize} from '../config/database.js';
 
 export const Curso = sequelize.define('Curso', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },

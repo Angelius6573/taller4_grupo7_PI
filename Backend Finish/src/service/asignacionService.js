@@ -1,5 +1,5 @@
-import { Asignacion } from '../models/asignacion.js';
-import { UsuarioService } from './usuarioService.js';
+import {Asignacion} from '../models/asignacion.js';
+import {UsuarioService} from './usuarioService.js';
 
 export class AsignacionService {
   static async asignar({ estudianteId, cursoId, seccion, laboratorio = false }) {

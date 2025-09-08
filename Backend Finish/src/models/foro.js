@@ -1,7 +1,7 @@
-import { DataTypes } from 'sequelize';
-import { sequelize } from '../config/database.js';
-import { Usuario } from './usuario.js';
-import { Curso } from './curso.js';
+import {DataTypes} from 'sequelize';
+import {sequelize} from '../config/database.js';
+import {Usuario} from './usuario.js';
+import {Curso} from './curso.js';
 
 export const Foro = sequelize.define('Foro', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
@@ -13,3 +13,5 @@ export const Foro = sequelize.define('Foro', {
 
 Foro.belongsTo(Usuario, { foreignKey: 'autorId', as: 'autor' });
 Foro.belongsTo(Curso, { foreignKey: 'cursoId' });
+
+//Esto ya no es útil

@@ -1,5 +1,5 @@
 import Router from 'express';
-import {AsignacionService} from '../services/AsignacionService.js';
+import {AsignacionService} from '../services/asignacionService.js';
 import {auth} from '../middleware/auth.js';
 import {wrap} from '../utils/asyncWrapper.js';
 
