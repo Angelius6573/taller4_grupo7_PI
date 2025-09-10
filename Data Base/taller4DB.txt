@@ -1,0 +1,118 @@
+scrippppppppppppppttttttttttttt
+
+
+
+
+
+
+-- ======================
+-- Tabla: roles
+-- ======================
+CREATE TABLE `roles` (
+    `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `nombre` ENUM('estudiante', 'catedratico', 'admin') UNIQUE NOT NULL
+);
+
+-- ======================
+-- Tabla: usuarios
+-- ======================
+CREATE TABLE `usuarios` (
+    `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `carnet` VARCHAR(9) UNIQUE NOT NULL,
+    `nombre` VARCHAR(255) NOT NULL,
+    `correo` VARCHAR(255) UNIQUE NOT NULL,
+    `password` VARCHAR(255) NOT NULL,
+    `rolId` BIGINT UNSIGNED NOT NULL,
+    CONSTRAINT `usuarios_rol_fk` FOREIGN KEY (`rolId`) REFERENCES `roles`(`id`)
+);
+
+-- ======================
+-- Tabla: cursos
+-- ======================
+CREATE TABLE `cursos` (
+    `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `codigo` VARCHAR(20) UNIQUE NOT NULL,
+    `nombre` VARCHAR(255) NOT NULL,
+    `creditos` INT
+);
+
+-- ======================
+-- Tabla: secciones
+-- ======================
+CREATE TABLE `secciones` (
+    `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `cursoId` INT NOT NULL,
+    `numero` INT NOT NULL,
+    `laboratorio` BOOLEAN DEFAULT FALSE,
+    `catedraticoId` INT,
+    CONSTRAINT `secciones_curso_fk` FOREIGN KEY (`cursoId`) REFERENCES `cursos`(`id`),
+    CONSTRAINT `secciones_catedratico_fk` FOREIGN KEY (`catedraticoId`) REFERENCES `usuarios`(`id`),
+    UNIQUE KEY `curso_seccion_unique` (`cursoId`, `numero`)
+);
+
+-- ======================
+-- Tabla: publicaciones
+-- ======================
+CREATE TABLE `publicaciones` (
+    `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `autorId` BIGINT UNSIGNED NOT NULL,
+    `cursoId` BIGINT UNSIGNED NOT NULL,
+    `contenido` TEXT,
+    `likes` BIGINT DEFAULT 0,
+    `fecha` DATE DEFAULT (CURRENT_DATE),
+    CONSTRAINT `publicaciones_autor_fk` FOREIGN KEY (`autorId`) REFERENCES `usuarios`(`id`),
+    CONSTRAINT `publicaciones_curso_fk` FOREIGN KEY (`cursoId`) REFERENCES `cursos`(`id`)
+);
+
+-- ======================
+-- Tabla: comentarios
+-- ======================
+CREATE TABLE `comentarios` (
+    `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `publicacionId` BIGINT UNSIGNED NOT NULL,
+    `autorId` BIGINT UNSIGNED NOT NULL,
+    `contenido` TEXT,
+    `fecha` DATE DEFAULT (CURRENT_DATE),
+    CONSTRAINT `comentarios_publicacion_fk` FOREIGN KEY (`publicacionId`) REFERENCES `publicaciones`(`id`),
+    CONSTRAINT `comentarios_autor_fk` FOREIGN KEY (`autorId`) REFERENCES `usuarios`(`id`)
+);
+
+-- ======================
+-- Tabla: foros
+-- ======================
+CREATE TABLE `foros` (
+    `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `autorId` INT NOT NULL,
+    `cursoId` INT NOT NULL,
+    `calificacion` INT NOT NULL CHECK (`calificacion` BETWEEN 1 AND 5),
+    `comentario` TEXT,
+    CONSTRAINT `foros_autor_fk` FOREIGN KEY (`autorId`) REFERENCES `usuarios`(`id`),
+    CONSTRAINT `foros_curso_fk` FOREIGN KEY (`cursoId`) REFERENCES `cursos`(`id`)
+);
+
+-- ======================
+-- Tabla: usuario_curso
+-- ======================
+CREATE TABLE `usuario_curso` (
+    `usuarioId` BIGINT NOT NULL,
+    `cursoId` BIGINT NOT NULL,
+    `status` ENUM('activo','finalizado','reprobado') DEFAULT 'activo',
+    PRIMARY KEY (`usuarioId`, `cursoId`),
+    CONSTRAINT `usuario_curso_usuario_fk` FOREIGN KEY (`usuarioId`) REFERENCES `usuarios`(`id`),
+    CONSTRAINT `usuario_curso_curso_fk` FOREIGN KEY (`cursoId`) REFERENCES `cursos`(`id`)
+);
+
+-- ======================
+-- Tabla: asignaciones
+-- ======================
+CREATE TABLE `asignaciones` (
+    `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `estudianteId` INT NOT NULL,
+    `cursoId` INT NOT NULL,
+    `seccion` INT,
+    `laboratorio` BOOLEAN DEFAULT FALSE,
+    `vecesRepitiendo` INT DEFAULT 0,
+    CONSTRAINT `asignaciones_estudiante_fk` FOREIGN KEY (`estudianteId`) REFERENCES `usuarios`(`id`),
+    CONSTRAINT `asignaciones_curso_fk` FOREIGN KEY (`cursoId`) REFERENCES `cursos`(`id`)
+);
+
