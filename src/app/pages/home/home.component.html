@@ -1,0 +1,54 @@
+<div class="home-container">
+  <header class="navbar">
+    <h2>Bienvenido a la Página Principal</h2>
+    <nav>
+      <button (click)="crearPublicacion()">Crear Publicación</button>
+      <button (click)="miPerfil()">Mi Perfil</button>
+      <button (click)="salir()">Salir</button>
+    </nav>
+  </header>
+
+  <div class="perfil-buscar">
+    <input
+      type="text"
+      placeholder="Ingrese Registro Personal para buscar perfil"
+      [(ngModel)]="registroBusqueda"
+    />
+    <button class="btn-primary" (click)="buscarPerfil()">Buscar Perfil</button>
+  </div>
+
+  <!-- 🔹 Filtros -->
+  <div class="filtros">
+    <select [(ngModel)]="tipoFiltro">
+      <option value="todos">Todos</option>
+      <option value="curso">Cursos</option>
+      <option value="catedratico">Catedráticos</option>
+    </select>
+
+    <input
+      type="text"
+      placeholder="Filtrar por nombre"
+      [(ngModel)]="filtro"
+    />
+    <button (click)="aplicarFiltro()">Aplicar Filtro</button>
+  </div>
+
+  <!-- 🔹 Lista de publicaciones -->
+  <div class="publicaciones">
+    <div class="publicacion" *ngFor="let pub of publicaciones">
+      <h3>{{ pub.tipo }}: {{ pub.nombre }}</h3>
+      <p><strong>{{ pub.usuario }}</strong> dijo:</p>
+      <p>{{ pub.mensaje }}</p>
+      <small>{{ pub.fecha | date: 'short' }}</small>
+
+      <!-- Comentarios -->
+      <div class="comentarios">
+        <p *ngFor="let c of pub.comentarios">💬 {{ c }}</p>
+        <input type="text" #comentario placeholder="Escribe un comentario..." />
+        <button (click)="comentar(pub, comentario.value); comentario.value=''">
+          Comentar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

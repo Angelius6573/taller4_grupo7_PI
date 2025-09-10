@@ -1,0 +1,27 @@
+<div class="login-container">
+  <h2>Iniciar Sesión</h2>
+  <form (submit)="onSubmit($event)">
+    <div class="form-group">
+      <label for="registro">Registro Personal</label>
+      <input type="text" id="registro" [(ngModel)]="registro" name="registro" placeholder="Ingresa CUI / Registro Académico" />
+    </div>
+
+    <div class="form-group">
+      <label for="password">Contraseña</label>
+      <input type="password" id="password" [(ngModel)]="password" name="password" placeholder="Ingresa tu contraseña" />
+    </div>
+
+    <p class="forgotpassword">
+      <!-- 🔹 Página de recuperar contraseña -->
+      <a [routerLink]="['/forgotpassword']">¿Olvidaste tu contraseña?</a>
+    </p>
+
+    <button type="submit">Entrar</button>
+  </form>
+
+  <p class="extra">
+    ¿No tienes cuenta?
+    <!-- 🔹 Página de registro -->
+    <a [routerLink]="['/register']">Regístrate aquí</a>
+  </p>
+</div>

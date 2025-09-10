@@ -1,0 +1,100 @@
+/* --- Principal --- */
+.publi-container {
+  width: 85%;
+  max-width: 900px;
+  margin: 30px auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #2d2d2d;
+  background: #fff;
+  border-radius: 14px;
+  padding: 30px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Navbar superior --- */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(135deg, #6a9cf8, #8f6af8);
+  color: #fff;
+  padding: 14px 28px;
+  border-radius: 14px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  margin-bottom: 24px;
+}
+
+.navbar h2 {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.navbar button {
+  background: #fff;
+  color: #6a4cf8;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.navbar button:hover {
+  background: #f0f0ff;
+}
+
+/* --- Formularios --- */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: #444;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid #d1d1f1;
+  outline: none;
+  background: #fff;
+  transition: all 0.25s ease;
+  font-size: 1rem;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #8f6af8;
+  box-shadow: 0 0 6px rgba(143, 106, 248, 0.3);
+}
+
+/* --- Botón publicar --- */
+button[type="submit"] {
+  background: linear-gradient(135deg, #6a9cf8, #8f6af8);
+  color: #fff;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background: linear-gradient(135deg, #5a8ff6, #7a5df6);
+  box-shadow: 0 4px 12px rgba(143, 106, 248, 0.3);
+}

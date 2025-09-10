@@ -1,0 +1,31 @@
+<div class="publi-container">
+  <header class="navbar">
+    <h2>Nueva Publicación</h2>
+    <nav>
+      <button class="btn-primary" routerLink="/home">Volver al Home</button>
+    </nav>
+  </header>
+  
+  <form (submit)="guardarPublicacion(); $event.preventDefault()">
+  
+    <div class="form-group">
+      <label>Tipo de Publicación</label>
+      <select [(ngModel)]="tipo" name="tipo">
+        <option value="Curso">Curso</option>
+        <option value="Catedrático">Catedrático</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>{{ tipo === 'Curso' ? 'Nombre del Curso' : 'Nombre del Catedrático' }}</label>
+      <input type="text" [(ngModel)]="nombre" name="nombre" />
+    </div>
+
+    <div class="form-group">
+      <label>Mensaje</label>
+      <textarea [(ngModel)]="mensaje" name="mensaje"></textarea>
+    </div>
+
+    <button type="submit">Publicar</button>
+  </form>
+</div>

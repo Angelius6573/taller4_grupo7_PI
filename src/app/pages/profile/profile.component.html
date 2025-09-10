@@ -1,0 +1,50 @@
+<div class="home-container" *ngIf="usuario">
+  <header class="navbar">
+    <h2>Perfil de {{ usuario.nombres }} {{ usuario.apellidos }}</h2>
+    <nav>
+      <button class="btn-primary" routerLink="/home">Volver al Home</button>
+    </nav>
+  </header>
+
+  <div class="perfil-info">
+    <h3>Información Personal</h3>
+
+    <div *ngIf="!esMiPerfil; else editableDatos">
+      <p><strong>Registro:</strong> {{ usuario.registro }}</p>
+      <p><strong>Nombre:</strong> {{ usuario.nombres }} {{ usuario.apellidos }}</p>
+      <p><strong>Correo:</strong> {{ usuario.email }}</p>
+    </div>
+
+    <ng-template #editableDatos>
+      <p><strong>Registro:</strong> {{ usuario.registro }}</p>
+
+      <label>Nombres:</label>
+      <input type="text" [(ngModel)]="usuario.nombres" />
+
+      <label>Apellidos:</label>
+      <input type="text" [(ngModel)]="usuario.apellidos" />
+
+      <label>Correo:</label>
+      <input type="email" [(ngModel)]="usuario.email" />
+
+      <button class="btn-primary" (click)="guardarCambios()">Guardar Cambios</button>
+    </ng-template>
+  </div>
+
+  <div class="perfil-cursos">
+    <h3>Cursos Aprobados</h3>
+    <ul>
+      <li *ngFor="let curso of usuario.cursos">
+        ✔ {{ curso.nombre }} ({{ curso.creditos }} créditos)
+      </li>
+    </ul>
+
+    <p><strong>Total Créditos:</strong> {{ totalCreditos }}</p>
+
+    <div *ngIf="esMiPerfil" class="perfil-editar">
+      <input type="text" [(ngModel)]="nuevoCurso" placeholder="Nombre del curso" />
+      <input type="number" [(ngModel)]="creditosCurso" placeholder="Créditos" />
+      <button class="btn-primary" (click)="agregarCurso()">Agregar Curso</button>
+    </div>
+  </div>
+</div>

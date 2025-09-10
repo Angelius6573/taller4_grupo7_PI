@@ -1,0 +1,117 @@
+/* --- Principal --- */
+.home-container {
+  width: 85%;
+  max-width: 1200px;
+  margin: 30px auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #2d2d2d;
+}
+
+/* --- Navbar --- */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(135deg, #6a9cf8, #8f6af8);
+  color: #fff;
+  padding: 14px 28px;
+  border-radius: 14px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+.navbar h2 {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.navbar button {
+  background: #fff;
+  color: #6a4cf8;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+/* --- Perfil --- */
+.perfil-info,
+.perfil-cursos {
+  background: #fff;
+  padding: 22px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  margin-top: 26px;
+  transition: all 0.25s ease;
+}
+
+.perfil-info:hover,
+.perfil-cursos:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.perfil-info h3,
+.perfil-cursos h3 {
+  margin-bottom: 12px;
+  color: #333;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.perfil-info p,
+.perfil-cursos p,
+.perfil-cursos li {
+  margin: 6px 0;
+  font-size: 1rem;
+  color: #444;
+}
+
+
+.perfil-info input,
+.perfil-editar input {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid #d1d1f1;
+  outline: none;
+  margin-bottom: 12px;
+  background: #fff;
+  transition: all 0.25s ease;
+}
+
+.perfil-info input:focus,
+.perfil-editar input:focus {
+  border-color: #8f6af8;
+  box-shadow: 0 0 6px rgba(143, 106, 248, 0.3);
+}
+
+/* --- Cursos aprobados --- */
+.perfil-cursos ul {
+  list-style: none;
+  padding: 0;
+}
+
+.perfil-cursos li {
+  padding: 6px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.perfil-cursos li:last-child {
+  border-bottom: none;
+}
+
+/* --- Editor de cursos (solo para mi perfil) --- */
+.perfil-editar {
+  margin-top: 16px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.perfil-editar input {
+  flex: 1;
+  min-width: 160px;
+}
